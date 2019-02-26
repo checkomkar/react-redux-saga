@@ -10,39 +10,61 @@ import { link } from 'fs';
 import getAllUsers from './actions';
 class App extends Component {
     //users = ["a", "b"]
-    componentDidMount(){
-        let data =this.props.getAllUsers();
-        console.log(data);
-    }
+    // componentDidMount(){
+    //     let data =this.props.getAllUsers();
+    //     console.log(data);
+    // }
 
     render() {
         return (
             <div className="App">
                 {/* <AddUser/>
                 <ListUser users={this.users}/> */}
-                <ul>
+                {/* <ul>
                     {
                         this.props.users.map((user, i)=>
                             <li key={i}>{user.name}</li>
                         )
                     }
-                </ul>
+                </ul> */}
+                <h3>{this.props.count.counter}</h3> 
+           
+                <button onClick={this.props.onIncrement}>Increment</button>
+                <button onClick={this.props.onDecrement}>Decrement</button>
+ 
                 
             </div>
         );
     }
 }
 
-function mapDispatchToProps(dispatch){
-    return{
-        getAllUsers: bindActionCreators(getAllUsers.getAllUsers, dispatch)
+// function mapDispatchToProps(dispatch){
+//     return{
+//         getAllUsers: bindActionCreators(getAllUsers.getAllUsers, dispatch)
+//     }
+// }
+
+// function mapStateToProps(state){
+//     return{
+//         users: state.users
+//     }
+// }
+
+const mapStateToProps = state => {
+    return {
+        count: state.count
+    }
+};
+const mapDispatchToProps = dispatch => {
+    return {
+        onIncrement: () =>
+            dispatch({ type: "COUNTER_INCREMENT", value: 1 }),
+        onDecrement: () =>
+            dispatch({ type: "COUNTER_DECREMENT", value: 1 }),
     }
 }
 
-function mapStateToProps(state){
-    return{
-        users: state.users
-    }
-}
+
+
 
 export default connect(mapStateToProps,mapDispatchToProps)(App);

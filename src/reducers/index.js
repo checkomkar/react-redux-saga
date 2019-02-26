@@ -17,15 +17,38 @@ import {combineReducers} from  'redux';
 //     }
 //     return state;
 // }
-const initialState = []
-const userReducer = (state = initialState, action) =>{
-    switch(action.type){
-        case 'FETCH_USERS':
-            return[...state, ...action.payload]
-        default:
-            return state
-    }
-}
+// const initialState = []
+// const userReducer = (state = initialState, action) =>{
+//     switch(action.type){
+//         case 'FETCH_USERS':
+//             return[...state, ...action.payload]
+//         default:
+//             return state
+//     }
+// }
 
-let reducer = combineReducers({users: userReducer})
+// let reducer = combineReducers({users: userReducer})
+
+const initialState = { counter: 1 }
+const countReducer = (state = initialState, action) => {
+    const newState = { ...state };
+    console.log(newState);
+    switch (action.type) {
+        case 'COUNT_INCREMENT_ASYNC':
+            //alert('INC')
+            newState.counter += action.value;
+            break;
+
+        case 'COUNTER_DECREMENT':
+            newState.counter -= action.value;
+            break;
+
+        default:
+            console.log('Invalid  Action');
+            break;
+    }
+    return newState;
+}
+let reducer = combineReducers({ count: countReducer });
 export default reducer;
+
