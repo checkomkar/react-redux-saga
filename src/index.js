@@ -4,17 +4,21 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import {createStore} from 'redux';
+import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
 import reducer from './reducers';
 import thunkMiddleware from 'redux-thunk';
 import {applyMiddleware} from 'redux';
 import createSagaMiddleware  from 'redux-saga'
 import { watchCountInc} from './saga/Saga';
+import { reducer as formReducer} from 'redux-form';
 
+const rootReducer = combineReducers({
+    form: formReducer
+})
 const sagaMiddleware =createSagaMiddleware();
-let store = createStore(reducer, applyMiddleware(sagaMiddleware));
-
+//let store = createStore(reducer, applyMiddleware(sagaMiddleware));
+const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 sagaMiddleware.run(watchCountInc)
 // If you want your app to work offline and load faster, you can change

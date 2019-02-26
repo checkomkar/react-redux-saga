@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import { link } from 'fs';
 import getAllUsers from './actions';
+import SignUp from './components/SignUp'
 class App extends Component {
     //users = ["a", "b"]
     // componentDidMount(){
@@ -27,11 +28,11 @@ class App extends Component {
                         )
                     }
                 </ul> */}
-                <h3>{this.props.count.counter}</h3> 
+                {/* <h3>{this.props.count.counter}</h3> 
            
                 <button onClick={this.props.onIncrement}>Increment</button>
-                <button onClick={this.props.onDecrement}>Decrement</button>
- 
+                <button onClick={this.props.onDecrement}>Decrement</button> */}
+                <SignUp />
                 
             </div>
         );

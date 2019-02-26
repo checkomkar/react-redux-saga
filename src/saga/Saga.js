@@ -1,4 +1,4 @@
-import {takeEvery,put,delay} from  "redux-saga/effects";
+import {takeLatest,put,delay} from  "redux-saga/effects";
 
 function* incCount(){
     yield delay(4000);
@@ -7,5 +7,5 @@ function* incCount(){
 }
 export function* watchCountInc(){
     console.log('Saga Called');
-    yield takeEvery("COUNTER_INCREMENT",incCount)
+    yield takeLatest("COUNTER_INCREMENT",incCount)
 }
